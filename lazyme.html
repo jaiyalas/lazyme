@@ -12,6 +12,7 @@ $endfor$
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 $if(root)$
+<!--  LOCAL CSS/JS ROUTE -->
 <link rel="stylesheet" href="$root$/reveal.js/css/reveal.css" />
     $if(theme)$
 <link rel="stylesheet" href="$root$/reveal.js/css/theme/$theme$.css" id="theme" />
@@ -21,6 +22,7 @@ $if(root)$
 <link rel="stylesheet" href="$root$/custom.css" />
 <link rel="stylesheet" href="$root$/syntaxH.css" />
 $else$
+<!--  REMOTE CSS/JS ROUTE -->
 <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/11966021/www/reveal.js/css/reveal.css" />
     $if(theme)$
 <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/11966021/www/reveal.js/css/theme/$theme$.css" id="theme" />
@@ -92,22 +94,23 @@ $else$
 $endif$
 
 <script>
-  // Full list of configuration options available here:
-  // https://github.com/hakimel/reveal.js#configuration
   Reveal.initialize({
     controls: true,
     progress: true,
     history: true,
     center: true,
     slideNumber: true,
-    transition: 'concave',
     fragments: true,
-      // none/fade/slide/convex/concave/zoom
   // available themes are in /css/theme
   $if(theme)$
     theme: Reveal.getQueryHash().theme || '$theme$',
   $else$
     theme: Reveal.getQueryHash().theme || 'black',
+  $endif$
+  $if(trans)$
+    transition: Reveal.getQueryHash().theme || '$trans$',
+  $else$
+    transition: Reveal.getQueryHash().theme || 'concave',
   $endif$
 
   // Optional libraries used to extend on reveal.js
