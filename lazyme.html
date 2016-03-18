@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>$title$</title>
+<meta name="description" content="$title$">
+$for(author)$
+<meta name="author" content="$author$" />
+$endfor$
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+$if(root)$
+<link rel="stylesheet" href="$root$/reveal.js/css/reveal.css" />
+    $if(theme)$
+<link rel="stylesheet" href="$root$/reveal.js/css/theme/$theme$.css" id="theme" />
+    $else$
+<link rel="stylesheet" href="$root$/reveal.js/css/theme/black.css" id="theme" />
+    $endif$
+<link rel="stylesheet" href="$root$/custom.css" />
+<link rel="stylesheet" href="$root$/syntaxH.css" />
+$else$
+<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/11966021/www/reveal.js/css/reveal.css" />
+    $if(theme)$
+<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/11966021/www/reveal.js/css/theme/$theme$.css" id="theme" />
+    $else$
+<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/11966021/www/reveal.js/css/theme/black.css" id="theme" />
+    $endif$
+<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/11966021/www/custom.css" />
+<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/11966021/www/syntaxH.css" />
+$endif$
+
+$if(math)$
+    $math$
+$endif$
+
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+  if( window.location.search.match( /print-pdf/gi ) ) {
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'reveal.js/css/print/pdf.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  }
+</script>
+<!--[if lt IE 9]>
+<script src="reveal.js/lib/js/html5shiv.js"></script>
+<![endif]-->
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+
+<body>
+$for(include-before)$
+  $include-before$
+$endfor$
+
+<div class="reveal">
+<div class="slides">
+
+$if(title)$
+<section>
+    <h1 class="title">$title$</h1>
+$if(subtitle)$
+  <h1 class="subtitle">$subtitle$</h1>
+$endif$
+$for(author)$
+    <h2 class="author">$author$</h2>
+$endfor$
+    <h3 class="date">$date$</h3>
+</section>
+$endif$
+$if(toc)$
+<section id="$idprefix$TOC">
+$toc$
+</section>
+$endif$
+
+$body$
+</div>
+</div>
+
+$if(root)$
+<script src="$root$/reveal.js/lib/js/head.min.js"></script>
+<script src="$root$/reveal.js/js/reveal.js"></script>
+$else$
+<script src="https://dl.dropboxusercontent.com/u/11966021/www/reveal.js/lib/js/head.min.js"></script>
+<script src="https://dl.dropboxusercontent.com/u/11966021/www/reveal.js/js/reveal.js"></script>
+$endif$
+
+<script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    slideNumber: true,
+    transition: 'concave',
+    fragments: true,
+      // none/fade/slide/convex/concave/zoom
+  // available themes are in /css/theme
+  $if(theme)$
+    theme: Reveal.getQueryHash().theme || '$theme$',
+  $else$
+    theme: Reveal.getQueryHash().theme || 'black',
+  $endif$
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+  });
+
+</script>
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>
